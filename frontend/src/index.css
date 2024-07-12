@@ -10,7 +10,8 @@ body{
 
 /* Add this to your CSS file */
 .slider-container {
-    margin: 0 -10px; /* Adjust this for overall slider padding */
+    margin: 0 -10px; 
+    padding: 20px 0;/* Adjust this for overall slider padding */
 }
 
 .card {

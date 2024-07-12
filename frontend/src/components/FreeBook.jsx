@@ -1,12 +1,37 @@
-import React from 'react'
-import list from '../../public/list.json'
+import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Cards from './Cards';
+import axios from 'axios';
+
 function FreeBook() {
-    const filteredData = list.filter((data) => data.category === "Free")
-    // console.log(filteredData);
+    const [book, setBook] = useState([]);
+
+    useEffect(() => {
+        let isMounted = true; // Add a flag to track if the component is mounted
+
+        const getBook = async () => {
+            try {
+                const res = await axios.get("http://localhost:3000/book");
+                if (isMounted) {
+                    setBook(res.data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        getBook();
+
+        return () => {
+            isMounted = false; // Cleanup function to set the flag to false on unmount
+        };
+    }, []);
+
+    const filteredData = book.filter((data) => data.category === "Free");
+    console.log(filteredData);
+
     var settings = {
         dots: true,
         infinite: false,
@@ -41,6 +66,7 @@ function FreeBook() {
             }
         ]
     };
+
     return (
         <>
             <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row gap-10 my-10'>
@@ -49,7 +75,7 @@ function FreeBook() {
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo laudantium, cupiditate assumenda sapiente iure accusamus ducimus hic cum magnam. Ipsum voluptas temporibus adipisci cum error porro quaerat repellat dolor delectus?</p>
                 </div>
             </div>
-            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row'>
+            <div className='max-w-screen-2xl container mx-auto md:px-20 px-4'>
                 <Slider {...settings} className="slider-container">
                     {
                         filteredData.map((data) => (
@@ -58,7 +84,6 @@ function FreeBook() {
                     }
                 </Slider>
             </div>
-
         </>
     );
 }

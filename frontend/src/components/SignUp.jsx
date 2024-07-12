@@ -1,12 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Login from './Login';
-
+import axios from 'axios';
+import toast from 'react-hot-toast';
 function SignUp() {
+    const navigate=useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-
+    const onSubmit = async (data) =>{
+        const userInfo={
+            fullname:data.fullname,
+            email:data.email,
+            password:data.password
+        }
+        await axios.post('http://localhost:3000/user/signup',userInfo)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.data){
+                toast.success("Sign Up Successfull!");
+                navigate("/");
+            }
+            localStorage.setItem("users",JSON.stringify(res.data));
+        })
+        .catch((error)=>{
+            if(error.response){
+                // console.log("Error: ",error);
+                // alert("Error: "+error.response.data.message);
+                toast.error(error.response.data.message);
+            }
+        })
+    }
     const openLoginModal = () => {
         document.getElementById("my_modal_3").showModal();
     };
@@ -19,12 +42,12 @@ function SignUp() {
                         <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</Link>
                         <h3 className="font-bold text-lg">Sign Up</h3>
                         <div className='mt-4 space-y-2'>
-                            <span>Name</span>
+                            <span>FullName</span>
                             <br />
                             <input 
-                                {...register("name", { required: true })} 
+                                {...register("fullname", { required: true })} 
                                 type="text" 
-                                placeholder='Enter Your Name..'
+                                placeholder='Enter Your FullName..'
                                 className='w-80 px-3 py-1 border rounded-md outline-none'
                             />
                             <br />

@@ -1,10 +1,39 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthProvider';
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const navigate=useNavigate();
+    const [authUser, setAuthUser] = useAuth();
+    const onSubmit = async (data) => {
+        const userInfo = {
+            email: data.email,
+            password: data.password
+        }
+        await axios.post('http://localhost:3000/user/login', userInfo)
+            .then((res) => {
+                // console.log(res.data);
+                if (res.data) {
+                    // alert("Login Successfull!");
+                    toast.success("Login Successfull!");
+                    closeModal();
+                    setAuthUser(res.data.user);
+                    navigate("/");
+                    localStorage.setItem("users", JSON.stringify(res.data));
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    console.log("Error: ", err);
+                    // alert("Error: " + err.response.data.message);
+                    toast.error("Error:"+err.response.data.message);
+                }
+            })
+    }
     const modalRef = useRef(null);
 
     const closeModal = () => {
@@ -18,13 +47,13 @@ function Login() {
             <dialog id="my_modal_3" className="modal" ref={modalRef}>
                 <div className="modal-box">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <Link to={"/"} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</Link>
+                        <Link className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</Link>
                         <h3 className="font-bold text-lg">Login!</h3>
                         <div className='mt-4 space-y-2'>
                             <span>Email</span>
                             <br />
-                            <input {...register("email", { required: true })} type="email" placeholder='Enter Your Email..' 
-                            className='w-80 px-3 py-1 border rounded-md outline-none'
+                            <input {...register("email", { required: true })} type="email" placeholder='Enter Your Email..'
+                                className='w-80 px-3 py-1 border rounded-md outline-none'
                             />
                             <br />
                             {errors.email && <span className='text-sm text-red-500'>This field is required</span>}
@@ -32,8 +61,8 @@ function Login() {
                         <div className='mt-4 space-y-2'>
                             <span>Password</span>
                             <br />
-                            <input {...register("password", { required: true })} type="password" placeholder='Enter Your Password..' 
-                            className='w-80 px-3 py-1 border rounded-md outline-none'
+                            <input {...register("password", { required: true })} type="password" placeholder='Enter Your Password..'
+                                className='w-80 px-3 py-1 border rounded-md outline-none'
                             />
                             <br />
                             {errors.password && <span className='text-sm text-red-500'>This field is required</span>}
