@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Story Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 500,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 2,
+        "name": "Story Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 1500,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 3,
+        "name": "Comedy Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 1000,
+        "category": "Humor",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 4,
+        "name": "Sports Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 800,
+        "category": "Sports",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 5,
+        "name": "Music Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 5000,
+        "category": "Free",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 6,
+        "name": "Story Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 300,
+        "category": "Literature",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    },
+    {
+        "id": 7,
+        "name": "Story Book",
+        "title": "Lorem, ipsum dolor sit amet consector adispisiconf elit.",
+        "price": 200,
+        "category": "Literature",
+        "image": "https://img.freepik.com/free-vector/realistic-book-lover-composition-with-stack-colorful-books-with-eyeglasses-home-plants-tea-cup-vector-illustration_1284-77312.jpg?ga=GA1.1.1976871238.1720776069&semt=sph"
+    }
+]
